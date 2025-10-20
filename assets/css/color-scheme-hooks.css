@@ -1,0 +1,4 @@
+/* Minimal hooks so light-dark() resolves based on the current data-color-scheme */
+:root { color-scheme: light dark; }
+html[data-color-scheme="light"] { color-scheme: light; }
+html[data-color-scheme="dark"]  { color-scheme: dark; }

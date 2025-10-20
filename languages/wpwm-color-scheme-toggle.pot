@@ -1,0 +1,22 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WPWM Color Scheme Toggle 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/wp-website-mastery/wpwm-color-scheme-toggle/issues\n"
+"POT-Creation-Date: 2025-10-14 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Cascade POT maker\n"
+"X-Domain: wpwm-color-scheme-toggle\n"
+
+#: wpwm-color-scheme-toggle.php:86
+msgid "Auto"
+msgstr ""
+
+#: wpwm-color-scheme-toggle.php:87
+msgid "Light"
+msgstr ""
+
+#: wpwm-color-scheme-toggle.php:88
+msgid "Dark"
+msgstr ""
