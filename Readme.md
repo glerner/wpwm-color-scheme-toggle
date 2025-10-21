@@ -1,3 +1,5 @@
+> Deprecated: This README is not maintained. Use `readme.txt` as the canonical documentation for this plugin. The WordPress.org Plugin Directory and the in-dashboard Plugins screen parse `readme.txt`.
+
 # WPWM Color Scheme Toggle
 
 Make your WordPress site friendlier for visitors: add a Light/Dark/Auto theme toggle that respects the visitor’s system preference and their manual choice.

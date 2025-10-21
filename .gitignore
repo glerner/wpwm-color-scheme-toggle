@@ -60,6 +60,7 @@ source_files.txt
 /temp_unanalyzed.txt
 test_processing_progress.txt
 junk.txt
+git-diff.txt
 /test_processing_scripts/
 last_processed_line.txt
 current_batch.txt

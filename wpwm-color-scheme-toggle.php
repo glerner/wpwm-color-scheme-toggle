@@ -103,6 +103,9 @@ add_action( 'wp_enqueue_scripts', 'wpwmcst_enqueue_assets' );
 
 /**
  * Optional: add a body class placeholder for SSR parity.
+ * Server-side render parity (SSR parity): ensuring the initial HTML/CSS sent by the server visually matches
+ * the state that JavaScript will apply on the client. The goal is to avoid a flash or jump when the page
+ * hydrates and the theme mode (Light/Dark) is finalized.
  *
  * @param array $classes Existing classes.
  * @return array

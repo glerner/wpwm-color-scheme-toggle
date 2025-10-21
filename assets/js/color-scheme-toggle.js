@@ -17,9 +17,11 @@
   var LS_KEY = 'wpwm:color-scheme';
   var root = document.documentElement;
   var mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+  // Detect if the browser actually supports prefers-color-scheme
+  var supportsPrefers = !!(mql && typeof mql.media === 'string' && mql.media !== 'not all');
   var labels = (typeof window.WPWM_TOGGLE_LABELS === 'object' && window.WPWM_TOGGLE_LABELS) || { auto: 'Auto', light: 'Light', dark: 'Dark' };
 
-  function systemPrefersDark(){ return !!(mql && mql.matches); }
+  function systemPrefersDark(){ return !!(supportsPrefers && mql && mql.matches); }
 
   function appliedMode(pref){
     if (pref === 'auto') return systemPrefersDark() ? 'dark' : 'light';
@@ -37,6 +39,8 @@
   }
 
   function setPreference(pref){
+    // Normalize: if Auto is requested but prefers-color-scheme isn't supported, treat as light
+    if (!supportsPrefers && pref === 'auto') pref = 'light';
     try { localStorage.setItem(LS_KEY, pref); } catch(e) {}
     var mode = appliedMode(pref);
     apply(mode);
@@ -46,11 +50,17 @@
   function getPreference(){
     try {
       var v = localStorage.getItem(LS_KEY);
+      // If unsupported and stored value is auto, surface light so UI never shows Auto in unsupported environments
+      if (!supportsPrefers && v === 'auto') return 'light';
       return v || 'auto';
     } catch(e){ return 'auto'; }
   }
 
   function cyclePref(pref){
+    if (!supportsPrefers) {
+      // Two-state cycle when prefers-color-scheme isn't supported
+      return pref === 'dark' ? 'light' : 'dark';
+    }
     return pref === 'auto' ? 'dark' : pref === 'dark' ? 'light' : 'auto';
   }
 
@@ -101,12 +111,12 @@
       if (el) onClickToggle(e);
     }, true);
 
-    if (mql && typeof mql.addEventListener === 'function'){
+    if (supportsPrefers && mql && typeof mql.addEventListener === 'function'){
       mql.addEventListener('change', function(){
         var pref = getPreference();
         if (pref === 'auto') setPreference('auto');
       });
-    } else if (mql && typeof mql.addListener === 'function') {
+    } else if (supportsPrefers && mql && typeof mql.addListener === 'function') {
       // Safari < 14
       mql.addListener(function(){
         var pref = getPreference();
